@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="main-page.css">
   <script type="module" src="index.js"></script>
   <title>Countries</title>
 </head>
@@ -15,16 +15,31 @@
     <div class="title">Where in the world ?</div>
     <div class="theme">
       <label class="switch">
-        <input type="checkbox" name="" class="theme-toggle">
+        <input type="checkbox" class="theme-toggle">
         <span class="slider"></span>
       </label>
     </div>
   </header>
 
-  <form autocomplete="off">
-    <input type="text" name="search-box" id="search-box">
-    <div id="result"></div>
-  </form>
+  <div class="filter">
+    <form autocomplete="off">
+      <input type="text" name="search-box" id="search-box">
+      <div id="result"></div>
+    </form>
+
+    <select name="region" id="region">
+      <option value="all" selected>All</option>
+      <option value="europe">Europe</option>
+      <option value="americas">Americas</option>
+      <option value="asia">Asia</option>
+      <option value="africa">Africa</option>
+      <option value="oceania">Oceania</option>
+    </select>
+    
+  </div>
+  
+
+  <div class="countries"></div>
 
 </body>
 

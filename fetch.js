@@ -1,4 +1,4 @@
-export async function fetchSearch({ url, query, method, data }) {
+export async function REST({ url, query, method, data }) {
 
   const result = await fetch(`${url}${query ? "/"+query : ''}`, {
       method: method || 'GET',
