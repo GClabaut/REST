@@ -3,9 +3,9 @@ import { REST } from "./fetch.js";
 const countries = document.querySelector('.countries');
 
 function fetchREST(link, val) {
-  countries.innerHTML = '';
   REST({... {url: link, query: val} })
   .then((data) => {
+    countries.innerHTML = '';
     data.map((country) => {
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
@@ -57,18 +57,12 @@ document.querySelector('.theme-toggle').addEventListener('click', setTheme)
 
 // searchbox results
 function showResults(val) {
-  const result = document.querySelector("#result");
+  const result = document.querySelector(".result");
   result.textContent = '';
   const res = document.createElement('ul');
 
   REST({... {url: 'https://restcountries.com/v3.1/name', query: `${search.value}`} })
   .then((data) => {
-    res.innerText = '';
-    if (data.length <= 1) {
-      result.style.display = 'none';
-    } else {
-      result.style.display = 'block';
-    }
     for (let i = 0; i < data.length; i++) {
       const newItem = document.createElement('li');
       newItem.textContent = data[i].name.common;
@@ -79,29 +73,32 @@ function showResults(val) {
     fetchREST('https://restcountries.com/v3.1/name', val)
   })
   .then(() => {
-    const resList = document.querySelectorAll("li");
+    const resList = document.querySelectorAll('li');
     resList.forEach(item => {
       item.addEventListener('click', () => {
         search.value = item.textContent;
-        showResults(val);
+        showResults(search.value);
       });
     });
-  })
+  });
 };
 
 
-const search = document.querySelector('#search-box')
+const search = document.querySelector('.search-box')
 
-search.addEventListener('keyup', (e) => {
-  e.preventDefault
+search.addEventListener('keydown', (e) => {
   showResults(search.value);
 });
 
-const region = document.querySelector('#region')
+const region = document.querySelector('.region')
 region.addEventListener('change', () => {
   if (region.value !== 'all') {
     fetchREST('https://restcountries.com/v3.1/region', region.value);
   } else if (region.value === 'all') {
     fetchREST('https://restcountries.com/v3.1/all');
   };
+});
+
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault()
 });

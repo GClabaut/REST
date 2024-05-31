@@ -1,127 +1,25 @@
-@font-face {
-  font-family: alexandria;
-  src: url(/asset/Alexandria-Regular.woff);
-}
-
-:root.light {
-  --text: #1a1a1a;
-
-  --background-light: #ffffff;
-  --background-med: #F6F7F8;
-  --background-dark: #edeef1;
-
-  --grey: lightgrey;
-}
-
-:root.dark {
-  --text: #e6e6e6;
-
-  --background-light: #28282a;
-  --background-med: #1f1f21;
-  --background-dark: #161618;
-
-  --grey: grey;
-}
-
-* {
-  font-family: alexandria, sans-serif;
-  color: var(--text);
-}
-
-h1 {
-  font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
-}
-
-body,
-.filter {
-  background-color: var(--background-dark);
-}
-
-header {
-  box-shadow: 0px 0px 16px black;
-}
-
-header,
-.filter,
-.countries {
-  padding: 16px;
-  margin-bottom: 32px;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-header, .title, .theme {
-  background-color: var(--background-light);
-}
-
-a:link {
-  text-decoration: none;
-}
-
-.theme {
+.page {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 46px;
-  height: 26px;
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(0.5rem, 5vw - 1.25rem, 2.5rem);
+  margin: 32px;
 }
 
-/* Hide default HTML checkbox */
-.theme-toggle {
-  display: none;
-}
-
-.theme-sun,
-.theme-moon {
-  min-height: 24px;
-}
-
-.theme-sun {
-  background: var(--text);
-  --webkit-mask: url(./asset/sun.svg) no-repeat center;
-  mask: url(./asset/sun.svg) no-repeat center;
-}
-
-.theme-moon {
-  background: var(--text);
-  --webkit-mask: url(./asset/moon.svg) no-repeat center;
-  mask: url(./asset/moon.svg) no-repeat center;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--grey);
-  border-radius: 26px;
-  transition: .4s;
-  box-shadow: 0px 0px 15px var(--background-med);
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 22px;
-  width: 22px;
-  left: 2px;
-  bottom: 2px;
+.top > * {
+  display: grid;
   background-color: var(--background-light);
-  box-shadow: 0px 0px 4px var(--background-med);
-  border-radius: 50%;
-  transition: .4s;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgb(35, 35, 35);
+  padding: 64px;
+}
+
+.top > * > * {
+  align-items: center;
 }
 
 input:checked + .slider:before {
@@ -129,10 +27,27 @@ input:checked + .slider:before {
 }
 
 .flag {
-  min-height: clamp(100px, 65vw, 500px);
+  min-height: max(100px, 30vw);
   background-size: contain !important;
   background-position: top !important;
   background-repeat: no-repeat !important;
+}
+
+.flag ~ * {
+  text-align: center;
+}
+
+.general > * {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.name {
+  padding-bottom: 16px;
 }
 
 /* Google map */
@@ -148,4 +63,11 @@ input:checked + .slider:before {
   left: 0;
   top: 0;
   position: absolute;
+}
+
+@media (max-width: 480px) {
+  .top {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
 }

@@ -1,0 +1,172 @@
+@font-face {
+  font-family: alexandria;
+  src: url(/asset/Alexandria-Regular.woff);
+}
+
+:root.light {
+  --text: #1a1a1a;
+
+  --background-light: #ffffff;
+  --background-med: #F6F7F8;
+  --background-dark: #edeef1;
+
+  --grey: lightgrey;
+}
+
+:root.dark {
+  --text: #e6e6e6;
+
+  --background-light: #28282a;
+  --background-med: #1f1f21;
+  --background-dark: #161618;
+
+  --grey: grey;
+}
+
+* {
+  font-family: alexandria, sans-serif;
+  color: var(--text);
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+}
+
+h1 {
+  font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
+}
+
+body,
+.filter {
+  background-color: var(--background-dark);
+}
+
+header {
+  box-shadow: 0px 0px 16px black;
+}
+
+header,
+.filter,
+.countries {
+  padding: 16px;
+  margin-bottom: 32px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header, .title, .theme {
+  background-color: var(--background-light);
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.theme {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.theme-toggle {
+  display: none;
+}
+
+.theme-sun,
+.theme-moon {
+  min-height: 24px;
+}
+
+.theme-sun {
+  background: var(--text);
+  --webkit-mask: url(./asset/sun.svg) no-repeat center;
+  mask: url(./asset/sun.svg) no-repeat center;
+}
+
+.theme-moon {
+  background: var(--text);
+  --webkit-mask: url(./asset/moon.svg) no-repeat center;
+  mask: url(./asset/moon.svg) no-repeat center;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--grey);
+  border-radius: 26px;
+  transition: .4s;
+  box-shadow: 0px 0px 15px var(--background-med);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--background-light);
+  box-shadow: 0px 0px 4px var(--background-med);
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.lds-ring,
+.lds-ring div {
+  box-sizing: border-box;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid currentColor;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

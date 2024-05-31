@@ -15,6 +15,7 @@ document.querySelector('.theme-toggle').addEventListener('click', setTheme)
 
 REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
 .then((data) => {
+  page.innerHTML = '';
   data.map((country) => {
 
     function setFavicons(favImg){
@@ -28,6 +29,9 @@ REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
 
     const top = document.createElement('div');
     top.setAttribute('class', 'top');
+
+    const nation = document.createElement('div');
+    nation.setAttribute('class', 'nation')
     const flag = document.createElement('div');
     flag.setAttribute('class', 'flag');
     flag.style.background = `url(${country.flags.svg})`;
@@ -39,7 +43,7 @@ REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
     figure.setAttribute('class', 'figure');
     const caption = document.createElement('figcaption');
     caption.setAttribute('class', 'caption');
-    caption.textContent = 'National anthem: ';
+    caption.textContent = 'National anthem';
     const audio = document.createElement('audio');
     audio.controls = 'controls';
     audio.src = `./asset/anthem/${country.name.common}.mp3`;
@@ -47,42 +51,78 @@ REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
 
     figure.append(caption, audio)
 
-    top.append(flag, altText, figure);
+    nation.append(flag, altText, figure);
 
     const general = document.createElement('div');
     general.setAttribute('class', 'general');
 
-    const countryName = document.createElement('div');
-    countryName.setAttribute('class', 'name');
+    const commonName = document.createElement('div');
+    const underlineCommon = document.createElement('span');
+    underlineCommon.setAttribute('class', 'underline');
+    underlineCommon.textContent = 'Common name:'
     const common = document.createElement('p');
-    common.innerText = `Common name: ${country.name.common}`;
+    common.setAttribute('class', 'common');
+    common.textContent = ` ${country.name.common}`;
+    commonName.append(underlineCommon, common);
+
+    const officialName = document.createElement('div');
+    const underlineOfficial = document.createElement('span');
+    underlineOfficial.setAttribute('class', 'underline');
+    underlineOfficial.textContent = 'Official name:'
     const official = document.createElement('p');
-    official.innerText = `Official name: ${country.name.official}`;
-    const population = document.createElement('div');
-    population.setAttribute('class', 'population');
-    population.innerText = `Population: ${country.population}`
-
-    countryName.append(common, official, population);
-
-    const location = document.createElement('div');
-    location.setAttribute('class', 'div');
-    const region = document.createElement('p');
-    region.setAttribute('class', 'region');
-    region.innerText = `Region: ${country.region}`;
-    const subRegion = document.createElement('p');
-    subRegion.setAttribute('class', 'subregion');
-    subRegion.innerText = `Subregion: ${country.subregion}`;
-
-    location.append(region, subRegion)
+    official.setAttribute('class', 'official');
+    official.textContent = ` ${country.name.official}`;
+    officialName.append(underlineOfficial, official);
 
     const capital = document.createElement('div');
-    capital.setAttribute('class', 'capital');
-    capital.innerText = `Capital: ${country.capital[0]}`;
+    const underlineCapital = document.createElement('span');
+    underlineCapital.setAttribute('class', 'underline');
+    underlineCapital.textContent = 'Capital:'
+    const cap = document.createElement('p');
+    cap.setAttribute('class', 'capital');
+    cap.textContent = ` ${country.capital[0]}`;
+    capital.append(underlineCapital, cap);
+
+    const populationTotal = document.createElement('div');
+    const underlinePopulation = document.createElement('span');
+    underlinePopulation.setAttribute('class', 'underline');
+    underlinePopulation.textContent = 'Population:'
+    const population = document.createElement('p');
+    population.setAttribute('class', 'population');
+    population.textContent = ` ${country.population}`;
+    populationTotal.append(underlinePopulation, population);
+    
+    const region = document.createElement('div');
+    const underlineRegion = document.createElement('span');
+    underlineRegion.setAttribute('class', 'underline');
+    underlineRegion.textContent = 'Region:'
+    const reg = document.createElement('p');
+    reg.setAttribute('class', 'region');
+    reg.textContent = ` ${country.region}`;
+    region.append(underlineRegion, reg);
+
+    const subregion = document.createElement('div');
+    const underlineSubregion = document.createElement('span');
+    underlineSubregion.setAttribute('class', 'underline');
+    underlineSubregion.textContent = 'Subregion:'
+    const subreg = document.createElement('p');
+    subreg.setAttribute('class', 'subregion');
+    subreg.textContent = ` ${country.region}`;
+    subregion.append(underlineSubregion, subreg);
 
     const currency = document.createElement('div');
-    currency.setAttribute('class', 'currency');
-    const curr = Object.values(country.currencies);
-    currency.innerText = `Currency: ${curr[0].name} (${curr[0].symbol})`;
+    const underlineCurrency = document.createElement('span');
+    underlineCurrency.setAttribute('class', 'underline');
+    underlineCurrency.textContent = 'Currency:'
+    const currTable = Object.values(country.currencies);
+    const curr = document.createElement('p');
+    curr.setAttribute('class', 'currency');
+    curr.textContent = ` ${currTable[0].name} (${currTable[0].symbol})`;
+    currency.append(underlineCurrency, curr);
+
+    general.append(commonName, officialName, capital, populationTotal, region, subregion, currency)
+
+    top.append(nation, general);
 
     const map = document.createElement('div');
     map.setAttribute('class', 'map');
@@ -97,9 +137,6 @@ REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
 
     map.append(google)
 
-
-    general.append(countryName, capital, location, currency);
-
-    page.append(top, general, map);
+    page.append(top, map);
   });
 });
