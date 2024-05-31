@@ -1,4 +1,4 @@
-import { REST } from "./fetch.js";
+import { REST } from "./import/fetch.js";
 
 const page = document.querySelector('.page')
 const country = JSON.parse(sessionStorage.getItem('country'));
