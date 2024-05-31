@@ -12,18 +12,20 @@
 <body>
 
   <header>
-    <div class="title">Where in the world ?</div>
+    <div class="title"><h1>Where in the world ?</h1></div>
     <div class="theme">
+      <div class="theme-sun"></div>
       <label class="switch">
-        <input type="checkbox" class="theme-toggle">
+        <input type="checkbox" autocomplete="off" class="theme-toggle">
         <span class="slider"></span>
       </label>
+      <div class="theme-moon"></div>
     </div>
   </header>
 
   <div class="filter">
     <form autocomplete="off">
-      <input type="text" name="search-box" id="search-box">
+      <input type="text" name="search-box" placeholder="ex: France" id="search-box">
       <div id="result"></div>
     </form>
 

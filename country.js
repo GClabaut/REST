@@ -16,6 +16,16 @@ document.querySelector('.theme-toggle').addEventListener('click', setTheme)
 REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
 .then((data) => {
   data.map((country) => {
+
+    function setFavicons(favImg){
+      const headTitle = document.querySelector('head');
+      const setFavicon = document.createElement('link');
+      setFavicon.setAttribute('rel','shortcut icon');
+      setFavicon.setAttribute('href',favImg);
+      headTitle.appendChild(setFavicon);
+    }
+    setFavicons(country.flags.svg);
+
     const top = document.createElement('div');
     top.setAttribute('class', 'top');
     const flag = document.createElement('div');
@@ -25,7 +35,19 @@ REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
     altText.setAttribute('class', 'alt');
     altText.textContent = country.flags.alt;
 
-    top.append(flag, altText);
+    const figure = document.createElement('figure');
+    figure.setAttribute('class', 'figure');
+    const caption = document.createElement('figcaption');
+    caption.setAttribute('class', 'caption');
+    caption.textContent = 'National anthem: ';
+    const audio = document.createElement('audio');
+    audio.controls = 'controls';
+    audio.src = `./asset/anthem/${country.name.common}.mp3`;
+    audio.textContent = 'Your browser does not support audio.';
+
+    figure.append(caption, audio)
+
+    top.append(flag, altText, figure);
 
     const general = document.createElement('div');
     general.setAttribute('class', 'general');
@@ -60,10 +82,24 @@ REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
     const currency = document.createElement('div');
     currency.setAttribute('class', 'currency');
     const curr = Object.values(country.currencies);
-    currency.innerText = `Currency: ${curr[0].name} ${curr[0].symbol}`;
+    currency.innerText = `Currency: ${curr[0].name} (${curr[0].symbol})`;
+
+    const map = document.createElement('div');
+    map.setAttribute('class', 'map');
+    const google = document.createElement('iframe');
+    google.src = `https://www.google.com/maps?q=${country.name.common}&output=embed`
+    google.width = "600"
+    google.height = "450"
+    google.style = "border:0";
+    google.allowFullscreen = "";
+    google.loading = "lazy";
+    google.referrerPolicy = "no-referrer-when-downgrade"
+
+    map.append(google)
+
 
     general.append(countryName, capital, location, currency);
 
-    page.append(top, general);
+    page.append(top, general, map);
   });
 });

@@ -18,7 +18,7 @@ function fetchREST(link, val) {
       flag.style.background = `url(${country.flags.svg})`
       const animation = document.createElement('div');
       animation.setAttribute('class', 'animate')
-      const name = document.createElement('p');
+      const name = document.createElement('h1');
       name.setAttribute('class', 'name');
       name.textContent = country.name.official;
 
@@ -57,22 +57,24 @@ document.querySelector('.theme-toggle').addEventListener('click', setTheme)
 
 // searchbox results
 function showResults(val) {
-  const res = document.querySelector("#result");
-  res.innerHTML = '';
-  let list = '';
+  const result = document.querySelector("#result");
+  result.textContent = '';
+  const res = document.createElement('ul');
 
   REST({... {url: 'https://restcountries.com/v3.1/name', query: `${search.value}`} })
   .then((data) => {
-    console.log(data)
-    if (data.length === 0) {
-      res.style.display = "none"
+    res.innerText = '';
+    if (data.length <= 1) {
+      result.style.display = 'none';
     } else {
-      res.style.display = "block"
+      result.style.display = 'block';
     }
     for (let i = 0; i < data.length; i++) {
-      list += '<li>' + data[i].name.common + '</li>';
+      const newItem = document.createElement('li');
+      newItem.textContent = data[i].name.common;
+      res.append(newItem);
     }
-    res.innerHTML = '<ul>' + list + '</ul>';
+    result.append(res);
 
     fetchREST('https://restcountries.com/v3.1/name', val)
   })
