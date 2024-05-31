@@ -65,9 +65,11 @@ input:checked + .slider:before {
   position: absolute;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 919px) {
   .top {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
+    gap: 32px;
+    margin: 0;
   }
 }
