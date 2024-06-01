@@ -25,6 +25,7 @@ function setFavicons(favImg) {
 REST({... {url: 'https://restcountries.com/v3.1/name', query: country} })
 .then((data) => {
   animation.style.display = 'none';
+  page.style.display = 'grid';
   data.map((country) => {
     setFavicons(country.flags.svg);
 
