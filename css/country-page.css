@@ -1,3 +1,9 @@
+.animation {
+  display: flex;
+  min-height: 75vh;
+  min-width: 50vw;
+}
+
 .page {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -20,10 +26,6 @@
 
 .top > * > * {
   align-items: center;
-}
-
-input:checked + .slider:before {
-  transform: translateX(20px);
 }
 
 .flag {

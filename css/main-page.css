@@ -1,5 +1,6 @@
 .countries {
   background-color: var(--background-dark);
+  min-height: 50vh;
 }
 
 .filter {

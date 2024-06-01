@@ -88,14 +88,14 @@ a:link {
 
 .theme-sun {
   background: var(--text);
-  --webkit-mask: url(./asset/sun.svg) no-repeat center;
-  mask: url(./asset/sun.svg) no-repeat center;
+  --webkit-mask: url(../asset/sun.svg) no-repeat center;
+  mask: url(../asset/sun.svg) no-repeat center;
 }
 
 .theme-moon {
   background: var(--text);
-  --webkit-mask: url(./asset/moon.svg) no-repeat center;
-  mask: url(./asset/moon.svg) no-repeat center;
+  --webkit-mask: url(../asset/moon.svg) no-repeat center;
+  mask: url(../asset/moon.svg) no-repeat center;
 }
 
 /* The slider */
@@ -125,6 +125,10 @@ a:link {
   transition: .4s;
 }
 
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
 .lds-ring,
 .lds-ring div {
   box-sizing: border-box;
@@ -133,6 +137,7 @@ a:link {
 .lds-ring {
   display: inline-block;
   position: relative;
+  margin: auto;
   width: 80px;
   height: 80px;
 }
