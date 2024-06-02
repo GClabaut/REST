@@ -83,9 +83,23 @@ details {
   pointer-events: none;
 }
 
-
 details > summary {
   list-style: none;
+}
+
+.animate {
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+  transition: 2.5s ease;
+  transition-delay: 0s;
+}
+
+details[open] ~ .animate {
+  max-height: 100vh;
+  overflow: hidden;
+  transition: 3s ease;
+  transition-delay: 0s;
 }
 
 .countries {
@@ -109,21 +123,6 @@ details > summary {
 
 .name {
   text-align: center;
-}
-
-.animate {
-  height: auto;
-  max-height: 0;
-  overflow: hidden;
-  transition: 2.5s ease;
-  transition-delay: 0s;
-}
-
-details[open] ~ .animate {
-  max-height: 100vh;
-  overflow: hidden;
-  transition: 3s ease;
-  transition-delay: 0s;
 }
 
 @media (max-width: 480px) {

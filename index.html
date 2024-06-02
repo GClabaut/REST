@@ -26,12 +26,13 @@
   </header>
 
   <div class="filter">
+
     <form autocomplete="off">
       <input type="text" name="search-box" placeholder="ex: France" class="search-box">
       <div class="result"></div>
     </form>
 
-    <select name="region" class="region">
+    <select name="region" class="region" id="region">
       <option value="all" selected>All</option>
       <option value="europe">Europe</option>
       <option value="americas">Americas</option>
@@ -39,9 +40,8 @@
       <option value="africa">Africa</option>
       <option value="oceania">Oceania</option>
     </select>
-    
+
   </div>
-  
 
   <div class="countries"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
 
