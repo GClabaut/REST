@@ -10,20 +10,25 @@ function fetchREST(link, val) {
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
       const link = document.createElement('a');
-      link.setAttribute('href', 'country.html')
+      link.setAttribute('href', 'country.html');
+      link.setAttribute('class', 'link-desktop');
       const detail = document.createElement('details');
       detail.setAttribute('class', 'detail');
       const flag = document.createElement('summary');
-      flag.setAttribute('class', 'flag')
+      flag.setAttribute('class', 'flag');
       flag.style.background = `url(${country.flags.svg})`
       const animation = document.createElement('div');
-      animation.setAttribute('class', 'animate')
+      animation.setAttribute('class', 'animate');
+      const linkTablet = document.createElement('a');
+      linkTablet.setAttribute('href', 'country.html');
+      linkTablet.setAttribute('class', 'link-tablet');
       const name = document.createElement('h1');
       name.setAttribute('class', 'name');
       name.textContent = country.name.official;
 
       detail.append(flag);
-      animation.append(name);
+      linkTablet.append(name);
+      animation.append(linkTablet);
       card.append(detail, animation);
       link.append(card);
       countries.append(link);
@@ -31,14 +36,14 @@ function fetchREST(link, val) {
   })
   .then(() => {
     document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.firstChild.setAttribute('open', '');
-      });
-      card.addEventListener('mouseleave', () => {
-        card.firstChild.removeAttribute('open');
-      });
+      // card.addEventListener('mouseenter', () => {
+      //   card.firstChild.setAttribute('open', '');
+      // });
+      // card.addEventListener('mouseleave', () => {
+      //   card.firstChild.removeAttribute('open');
+      // });
       card.addEventListener('click', () => {
-        sessionStorage.setItem('country', JSON.stringify(card.lastChild.innerText));
+        sessionStorage.setItem('country', JSON.stringify(card.lastChild.outerText));
       });
     });
   });

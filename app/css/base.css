@@ -1,6 +1,6 @@
 @font-face {
   font-family: alexandria;
-  src: url(/asset/Alexandria-Regular.woff);
+  src: url(../asset/Alexandria-Regular.woff2);
 }
 
 :root.light {
@@ -70,7 +70,6 @@ a:link {
 /* The switch - the box around the slider */
 .switch {
   position: relative;
-  display: inline-block;
   width: 46px;
   height: 26px;
 }

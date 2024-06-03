@@ -125,6 +125,21 @@ details[open] ~ .animate {
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .link-desktop {
+    pointer-events: none;
+  }
+
+  a:link {
+    text-decoration: underline;
+  }
+
+  details,
+  .link-tablet {
+    pointer-events: all;
+  }
+}
+
 @media (max-width: 480px) {
 
   .filter {
