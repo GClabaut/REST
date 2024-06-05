@@ -2,6 +2,8 @@ import { REST } from "./import/fetch.js";
 
 const countries = document.querySelector('.countries');
 
+const isMobile = !window.matchMedia('only screen and (min-width: 1024px)').matches
+
 function fetchREST(link, val) {
   REST({... {url: link, query: val} })
   .then((data) => {
@@ -36,12 +38,14 @@ function fetchREST(link, val) {
   })
   .then(() => {
     document.querySelectorAll('.card').forEach(card => {
-      // card.addEventListener('mouseenter', () => {
-      //   card.firstChild.setAttribute('open', '');
-      // });
-      // card.addEventListener('mouseleave', () => {
-      //   card.firstChild.removeAttribute('open');
-      // });
+      if (isMobile !== true) {
+        card.addEventListener('mouseenter', () => {
+          card.firstChild.setAttribute('open', '');
+        });
+        card.addEventListener('mouseleave', () => {
+          card.firstChild.removeAttribute('open');
+        });
+      }
       card.addEventListener('click', () => {
         sessionStorage.setItem('country', JSON.stringify(card.lastChild.outerText));
       });
@@ -93,6 +97,9 @@ const search = document.querySelector('.search-box')
 
 search.addEventListener('keydown', (e) => {
   showResults(search.value);
+  if (search.value === '') {
+    fetchREST('https://restcountries.com/v3.1/all')
+  }
 });
 
 const region = document.querySelector('.region')
