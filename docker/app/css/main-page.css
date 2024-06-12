@@ -1,0 +1,158 @@
+.countries {
+  background-color: var(--background-dark);
+  min-height: 50vh;
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(1fr);
+}
+
+form {
+  position:relative;
+  display: grid;
+  grid-column: 1 / 4;
+}
+
+.search-box,
+.region {
+  background-color: var(--background-light);
+}
+
+.search-box {
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  padding-left: 25px;
+  font-weight: 500;
+  color: var(--text);
+  border-radius: 50px;
+}
+
+.region {
+  height: 50px;
+  grid-column: 6 / 7;
+  border: none;
+  outline: none;
+  padding-left: 25px;
+  border-radius: 50px;
+}
+
+/* Search query list */
+.result {
+  width: 100%;
+  max-height: 50vh;
+  margin-top: 50px;
+  overflow: auto;
+  position: absolute;
+  background-color: var(--background-light);
+  padding-right: 25px;
+  border: 1px solid var(--background-dark);
+  border-radius: 16px;
+  display: none;
+}
+
+.result ul {
+  list-style-type: none;
+  padding-left: 25px;
+}
+.result ul li {
+  padding: 12px 0;
+}
+.result ul li:hover {
+  color: white;
+  background-color: dodgerblue;
+  border-radius: 4px;
+}
+
+.search-box:focus + .result {
+  display: block;
+}
+
+.result:active {
+  display: block;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+details {
+  pointer-events: none;
+}
+
+details > summary {
+  list-style: none;
+}
+
+.animate {
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+  transition: 2.5s ease;
+  transition-delay: 0s;
+}
+
+details[open] ~ .animate {
+  max-height: 100vh;
+  overflow: hidden;
+  transition: 3s ease;
+  transition-delay: 0s;
+}
+
+.countries {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 64px;
+}
+
+.card {
+  padding: 8px;
+  background-color: var(--background-light);
+  border-radius: 12px;
+}
+
+.flag {
+  min-height: max(150px, 20vh);
+  background-size: contain !important;
+  background-position: top !important;
+  background-repeat: no-repeat !important;
+}
+
+.name {
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .link-desktop {
+    pointer-events: none;
+  }
+
+  a:link {
+    text-decoration: underline;
+  }
+
+  details,
+  .link-tablet {
+    pointer-events: all;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .filter {
+    gap: 24px;
+  }
+
+  form {
+    width: calc(100% - 25px);
+    grid-column: 1 / 7;
+  }
+
+  .region {
+    grid-column: 1 / 7;
+    grid-row: 2 / 3;
+  }
+}

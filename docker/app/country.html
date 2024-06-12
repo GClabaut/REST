@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="This webpage shows general informations about the country selected in the landing page.">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/country-page.css">
+  <script type="module" src="country.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <header>
+    <div class="title"><a href="index.html"><h1>Back to country list</h1></a></div>
+    <div class="theme">
+      <div class="theme-sun"></div>
+      <label class="switch">
+        <input type="checkbox" autocomplete="off" class="theme-toggle">
+        <span class="slider"></span>
+      </label>
+      <div class="theme-moon"></div>
+    </div>
+  </header>
+
+  <div class="animation"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+  
+  <div class="page">
+    <div class="top">
+      <div class="nation"></div>
+      <div class="general">
+        <div><div class="underline">Common name:</div><div class="common"></div></div>
+        <div><div class="underline">Official name:</div><div class="official"></div></div>
+        <div><div class="underline">Capital:</div><div class="capital"></div></div>
+        <div><div class="underline">Population:</div><div class="population"></div></div>
+        <div><div class="underline">Region:</div><div class="region"></div></div>
+        <div><div class="underline">Subregion:</div><div class="subregion"></div></div>
+        <div><div class="underline">Currency:</div><div class="currency"></div></div>
+      </div>
+    </div>
+    <div class="map"></div>
+  </div>
+
+</body>
+
+</html>
